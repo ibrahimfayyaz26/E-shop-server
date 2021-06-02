@@ -45,13 +45,9 @@ router.post("/register", (req, res) => {
     .save()
     .then((i) => {
       if (i) {
-        const token = jwt.sign({ userId: i.id, admin: i.isAdmin }, secret, {
-          expiresIn: "1d",
-        });
         res.send({
           msg: "user authenticated",
           email: i.email,
-          token: token,
           user: i,
         });
       } else {
